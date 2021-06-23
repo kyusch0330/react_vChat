@@ -6,13 +6,13 @@ type User = {
   id:string;
   name:string;
 }
-type chatLog = {
+type ChatLog = {
   user:User;
   chat:string;
 }
 type Props = {
   user: User;
-  chatLogs:chatLog[];
+  chatLogs:ChatLog[];
   onRegister:CallableFunction;
 }
 
@@ -31,7 +31,7 @@ export default class ChatWindow extends React.Component<Props>{
   }
 
   render(){
-    const chatLogs = this.props.chatLogs;
+    const chatLogs:ChatLog[] = this.props.chatLogs;
     return (
       <React.Fragment>
         <h1 style={{color:"white"}}>{this.props.user.name}</h1>

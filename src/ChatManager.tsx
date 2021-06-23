@@ -11,12 +11,13 @@ type Props = {
   users:User[];
 }
 
-type chatLog = {
+type ChatLog = {
   user:User;
   chat:string;
 }
+
 type State = {
-  chatLogs: chatLog[];
+  chatLogs: ChatLog[];
 }
 
 export default class ChatManager extends React.Component<Props,State>{

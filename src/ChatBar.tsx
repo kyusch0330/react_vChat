@@ -36,7 +36,7 @@ export default class ChatBar extends React.Component<Props,State>{
   }
   
   render(){
-    const chat = this.state.chat;
+    const chat:string = this.state.chat;
     return(
       <div className="chatBar">
         <ChatInput 

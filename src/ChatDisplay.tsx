@@ -3,26 +3,26 @@ type User = {
   id:string;
   name:string;
 }
-type chatLog = {
+type ChatLog = {
   user:User;
   chat:string;
 }
 type Props = {
   id: string;
-  chatLogs:chatLog[];
+  chatLogs:ChatLog[];
 }
 
 export default class ChatDisplay extends React.Component<Props>{
   
   render(){
-    const chatLogs = this.props.chatLogs;
-    let prevUserId = "";
+    const chatLogs:ChatLog[] = this.props.chatLogs;
+    let prevUserId:string = "";
 
-    const showLogs = chatLogs.map((chatLog:chatLog) => {
-      const isMyChat = (this.props.id === chatLog.user.id) ? true : false;
-      const chatBoxClassName = isMyChat? "myChatBox" : "notMyChatBox";
-      const chatClassName =  isMyChat ? "myChat" : "notMyChat";
-      const isAnotherSpeaker = (prevUserId !== chatLog.user.id) ? true : false; 
+    const showLogs = chatLogs.map((chatLog:ChatLog) => {
+      const isMyChat:boolean = (this.props.id === chatLog.user.id) ? true : false;
+      const chatBoxClassName:string = isMyChat? "myChatBox" : "notMyChatBox";
+      const chatClassName:string =  isMyChat ? "myChat" : "notMyChat";
+      const isAnotherSpeaker:boolean = (prevUserId !== chatLog.user.id) ? true : false; 
       prevUserId = chatLog.user.id;
       return (
         <div className={chatBoxClassName}>
