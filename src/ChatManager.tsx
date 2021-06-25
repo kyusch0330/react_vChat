@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import ChatWindow  from './ChatWindow';
 import "./Chat.css";
 
@@ -16,7 +16,7 @@ type ChatLog = {
   chat:string;
 }
 
-export default function ChatManager(props:Props) {
+const ChatManager = (props:Props) => {
   const [chatLogs, setChatLogs] = useState<ChatLog[]>([]);
   
   const handleChatRegister = (user:User,chat:string) => {
@@ -27,7 +27,11 @@ export default function ChatManager(props:Props) {
     // newLogs.push({
     //   user: user, 
     //   chat: chat,
-    // }); //-> 작동안됨
+    // }); 
+    //-> 작동안됨 newLogs가 chatLogs를 그대로 참조하여 push로 수정하므로 불변성이 깨져서
+    //-> let newLogs = chatLogs.slice(); 처럼 복사해서 사용해야 가능
+    //-> 원본 값을 똑같이 변화시키면 변한게 없다고 판단하여 렌더링이 수행되지 않음
+
     setChatLogs(newLogs);
   }
   
@@ -50,6 +54,8 @@ export default function ChatManager(props:Props) {
   );
 
 }
+
+export default ChatManager;
 
 // export default class ChatManager extends Component<Props,State>{
 
