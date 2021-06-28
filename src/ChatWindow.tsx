@@ -32,7 +32,6 @@ const ChatWindow = (props:Props) => {
     props.onRegister(props.user, chat);
   }
 
-  // const chatLogs:ChatLog[] = props.chatLogs;
   return (
     <React.Fragment>
       <h1 style={{color:"white"}}>{props.user.name}</h1>

@@ -14,16 +14,22 @@ type Props = {
 const ChatMenu = (props:Props) => {
 
   const [inviteModalOn,setInviteModalOn] = useState(false);
+
+  const toggleInviteModal = () => {
+    setInviteModalOn(!inviteModalOn);
+  }
+
   
   return (
     <div className="chatMenu">
-      <button onClick={()=>{
-        setInviteModalOn(!inviteModalOn);
-        console.log(inviteModalOn);
-      }}>
+      <button onClick={toggleInviteModal}>
         invite
       </button>
-      {inviteModalOn && <InviteModal id={props.user.id} onAddUser={props.onAddUser}/>}
+      {inviteModalOn && <InviteModal
+        id={props.user.id}
+        onAddUser={props.onAddUser}
+        onToggle={toggleInviteModal}
+      />}
  
       <button onClick={()=>{
         props.onQuitUser(`${props.user.id}&${props.user.name}`);

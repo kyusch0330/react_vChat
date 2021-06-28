@@ -28,14 +28,12 @@ export default function ChatManager(props:Props) {
   }
 
   const handleAddUser = (userInfo:string) => {
-    console.log(userInfo);
+
     const [id,name] = userInfo.split('&');
     const newUser = {
       id:id,
       name:name 
     }
-    console.log(newUser);
-    console.log(id+" is adding... "+newUser.id+" / "+newUser.name);
 
     const isNewUser = !(users.some((user) => user.id === id));
     const newUsers = isNewUser? users.concat(newUser) : users; 
@@ -68,9 +66,7 @@ export default function ChatManager(props:Props) {
       chat:`${name} has left the chat`
     }
     setChatLogs(chatLogs.concat(message));
-  
   }
-
   
   const chatWindows = users.map((user:User) => {
     return (
