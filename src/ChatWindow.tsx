@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
+import ChatMenu from './ChatMenu';
 import ChatDisplay from './ChatDisplay'; 
-import ChatBar from './ChatBar'; 
+import ChatBar from './ChatBar';
 
 type User = {
   id:string;
@@ -14,14 +15,16 @@ type Props = {
   user: User;
   chatLogs:ChatLog[];
   onRegister:CallableFunction;
+  onAddUser:CallableFunction;
+  onQuitUser:CallableFunction;
 }
 
 const ChatWindow = (props:Props) => {
-  const displayRef = useRef<HTMLInputElement>(null);
+  const display = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if(displayRef.current){
-      displayRef.current.scrollTop = displayRef.current.scrollHeight;
+    if(display.current){
+      display.current.scrollTop = display.current.scrollHeight;
     }
   });
 
@@ -29,14 +32,18 @@ const ChatWindow = (props:Props) => {
     props.onRegister(props.user, chat);
   }
 
-
-  const chatLogs:ChatLog[] = props.chatLogs;
+  // const chatLogs:ChatLog[] = props.chatLogs;
   return (
     <React.Fragment>
       <h1 style={{color:"white"}}>{props.user.name}</h1>
-      <div className="chatDisplay" ref={displayRef}>
-        <ChatDisplay id={props.user.id} chatLogs={chatLogs}/>
-      </div>
+      <ChatMenu
+       user={props.user}
+       onAddUser={props.onAddUser}
+       onQuitUser={props.onQuitUser}/>
+      <ChatDisplay
+       id={props.user.id}
+       chatLogs={props.chatLogs}
+       displayRef={display}/>
       <ChatBar onRegister={handleChatRegister}/>
     </React.Fragment>
   )
